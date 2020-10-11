@@ -5,6 +5,8 @@
     <recommend-view :recommends='recommends'/>
     <feature-view/>
     <tab-control class="tab-control" :titles="['流行','新款','精选']"/>
+    <goods-list :goods="goods['pop'].list"/>
+
     <ul>
       <li>列表1</li>
       <li>列表2</li>
@@ -114,19 +116,22 @@
 //公共组件
 import NavBar from 'components/common/navbar/NavBar'
 import TabControl from 'components/content/tabControl/TabControl'
+import GoodsList from 'components/content/goods/GoodsList'
+
 //子组件
 import HomeSwiper from './childComps/HomeSwiper'
 import RecommendView from './childComps/HomeRecommendView'
 import FeatureView from './childComps/FeatureView'
 
 //方法
-import {getHomeMultidata, getHomeGoods} from 'network/home';
+import { getHomeMultidata, getHomeGoods } from 'network/home';
   
   export default {
     name: "Home",
     components: {
       NavBar,
       TabControl,
+      GoodsList,
 
       HomeSwiper,
       RecommendView,
