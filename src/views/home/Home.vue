@@ -120,7 +120,7 @@ import RecommendView from './childComps/HomeRecommendView'
 import FeatureView from './childComps/FeatureView'
 
 //方法
-import {etHomeMultidata, getHomeGoods} from 'network/home';
+import {getHomeMultidata, getHomeGoods} from 'network/home';
   
   export default {
     name: "Home",
@@ -153,22 +153,22 @@ import {etHomeMultidata, getHomeGoods} from 'network/home';
       this.getHomeGoods('sell')
 
     },
-    meghods: {
+    methods: {
       getHomeMultidata() {
         getHomeMultidata().then(res => {
           console.log(res);
 
           this.banners = res.data.banner.list;
           this.recommends = res.data.recommend.list;
-        }),
-        getHomeGoods(type) {
-          const page = this.goods[type].page + 1
-          getHomeGoods(type, page).then(res => {
-            console.log(res);
-          })
-        }
+        })
       },
-
+      getHomeGoods(type) {
+        const page = this.goods[type].page + 1
+        getHomeGoods(type, page).then(res => {
+          this.goods[type].list.push(...res.data.list)
+          this.goods[type].page += 1
+        })
+      }
     }
   }
 </script>
